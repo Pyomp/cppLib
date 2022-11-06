@@ -1,10 +1,10 @@
 {
     "configurations": [
         {
-            "name": "debug cpp",
+            "name": "C/C++: make build and debug",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/a",
+            "program": "${workspaceFolder}/build/${workspaceFolderBasename}",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -23,7 +23,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "make",
+            "preLaunchTask": "build main",
             "miDebuggerPath": "/usr/bin/gdb"
         }
     ],

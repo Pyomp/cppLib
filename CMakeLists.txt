@@ -1,11 +1,24 @@
 cmake_minimum_required(VERSION 3.16)
 set(CMAKE_CXX_STANDARD 20)
+project(cppPlayground CXX)
 
-#set the project name
-project(cppPlayground)
+add_executable(${PROJECT_NAME} main.cc)
 
-file(GLOB_RECURSE srcFiles CONFIGURE_DEPENDS "*.h" "*.cc")
+aux_source_directory(models MODELS_SRC)
+aux_source_directory(services SERVICES_SRC)
+aux_source_directory(utils UTILS_SRC)
 
-#add the executable
-add_executable(a ${srcFiles})
-set_target_properties(a PROPERTIES LINKER_LANGUAGE CXX)
+target_include_directories(
+    ${PROJECT_NAME}
+    PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/models
+    ${CMAKE_CURRENT_SOURCE_DIR}/services
+    ${CMAKE_CURRENT_SOURCE_DIR}/utils
+)
+
+target_sources(${PROJECT_NAME}
+               PRIVATE
+               ${MODELS_SRC}
+               ${SERVICES_SRC}
+               ${UTILS_SRC}
+)
