@@ -1,3 +1,5 @@
+#pragma once
+
 #include <map>
 #include <string>
 #include <iostream>
@@ -6,6 +8,7 @@
 namespace terminal {
 
     std::map<std::string, void(*)(std::vector<std::string> args)> dispatcher;
+    
     namespace {
         bool isInit = false;
         void loop() {
