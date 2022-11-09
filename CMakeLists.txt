@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 20)
 aux_source_directory(models MODEL_SRC)
 aux_source_directory(utils UTILS_SRC)
 aux_source_directory(services SERVICES_SRC)
+aux_source_directory(tests TESTS_SRC)
 
 add_executable(${PROJECT_NAME} main.cc)
 
@@ -15,6 +16,7 @@ target_include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/models
     ${CMAKE_CURRENT_SOURCE_DIR}/services
     ${CMAKE_CURRENT_SOURCE_DIR}/utils
+    ${CMAKE_CURRENT_SOURCE_DIR}/tests
 )
 
 target_sources(${PROJECT_NAME}
@@ -22,4 +24,5 @@ target_sources(${PROJECT_NAME}
                ${MODEL_SRC}
                ${UTILS_SRC}
                ${SERVICES_SRC}        
+               ${TESTS_SRC}        
 )
