@@ -52,7 +52,15 @@
         "streambuf": "cpp",
         "thread": "cpp",
         "typeinfo": "cpp",
-        "map": "cpp"
+        "map": "cpp",
+        "any": "cpp",
+        "cerrno": "cpp",
+        "cinttypes": "cpp",
+        "climits": "cpp",
+        "condition_variable": "cpp",
+        "ios": "cpp",
+        "mutex": "cpp",
+        "queue": "cpp"
     }
 
 }

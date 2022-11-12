@@ -1,12 +1,6 @@
-#include <iostream>
-
-// #include "SafetyThreadTest.h"
-// #include "terminal.h"
-// #include "structCast.h"
 #include "EventSet.h"
-#include "EventSetVoid.h"
 
-int main() {
+void eventSetTest() {
     // SafetyThreadTest::runTest();
     // terminal::init(false);
     // structCastTest();
