@@ -3,25 +3,20 @@
 // #include "SafetyThreadTest.h"
 // #include "terminal.h"
 // #include "structCast.h"
-#include "EventSet.h"
-#include "EventSetVoid.h"
-
+// #include "EventSet.h"
+// #include "EventSetVoid.h"
+#include "stringBufferUtils.h"
+#include <cstring>
 int main() {
-    // SafetyThreadTest::runTest();
-    // terminal::init(false);
-    // structCastTest();
-    struct A {
-        int y = 10;
-    };
-    A a;
-    EventSet<A> e;
-    e.add([](A a) {std::cout << a.y << std::endl;});
-    e.add([](A a) {std::cout << "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" << std::endl;});
-    e.add([](A a) {std::cout << a.y << std::endl;});
-    // e.remove(&p);
-    e.emit(a);
-    e.emit(a);
-    // e.remove(p);
-    e.emit(a);
+    float a = 97.998798;
+    char s[4];
+
+    std::memcpy(&s, &a, 4);
+    std::string str(s, 4);
+    // std::cout << stringBufferUtils::getString(str, 4, 2) << std::endl;
+    // std::cout << (int)stringBufferUtils::getUint8(str, 4) << std::endl;
+    // std::cout << stringBufferUtils::getUint16(str, 2) << std::endl;
+    std::cout << stringBufferUtils::getFloat32(str, 0) << std::endl;
+    std::cout << a << std::endl;
     return 0;
 }
