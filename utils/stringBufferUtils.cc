@@ -12,9 +12,9 @@ uint8_t stringBufferUtils::getUint8(std::string str, size_t offset) {
 };
 
 uint16_t stringBufferUtils::getUint16(std::string str, size_t offset) {
-    uint16_t a;
-    std::memcpy(&a, &str[offset], sizeof(uint16_t));
-    return a;
+    // uint16_t a;
+ // std::memcpy(&a, &str[offset], sizeof(uint16_t));
+    return *(uint16_t*)&str[offset];
 }
 
 uint32_t stringBufferUtils::getUint32(std::string str, size_t offset) {
@@ -30,6 +30,7 @@ float stringBufferUtils::getFloat32(std::string str, size_t  offset) {
 }
 
 std::string stringBufferUtils::getString(std::string str, size_t offset, size_t size) {
+    if (offset + size > str.size())return "";
     return std::string(&str[offset], size);
 };
 
