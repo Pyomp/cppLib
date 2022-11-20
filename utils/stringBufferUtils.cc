@@ -14,6 +14,7 @@ uint8_t stringBufferUtils::getUint8(std::string str, size_t offset) {
 uint16_t stringBufferUtils::getUint16(std::string str, size_t offset) {
     // uint16_t a;
  // std::memcpy(&a, &str[offset], sizeof(uint16_t));
+    if (str.size() < sizeof(uint16_t) + offset)return 0;
     return *(uint16_t*)&str[offset];
 }
 
@@ -27,6 +28,10 @@ float stringBufferUtils::getFloat32(std::string str, size_t  offset) {
     float a;
     std::memcpy(&a, &str[offset], sizeof(float));
     return a;
+}
+
+uint64_t stringBufferUtils::getUint64(std::string str, size_t offset) {
+    return *(uint64_t*)&str[offset];
 }
 
 std::string stringBufferUtils::getString(std::string str, size_t offset, size_t size) {
@@ -44,6 +49,10 @@ std::string stringBufferUtils::getString(uint16_t value) {
 
 std::string stringBufferUtils::getString(uint32_t value) {
     return std::string((char*)&value, sizeof(uint32_t));
+};
+
+std::string stringBufferUtils::getString(uint64_t value) {
+    return std::string((char*)&value, sizeof(uint64_t));
 };
 
 std::string stringBufferUtils::getString(float value) {
@@ -65,6 +74,11 @@ size_t setUint16(uint16_t value, std::string dest, size_t offset) {
 size_t setUint32(uint32_t value, std::string dest, size_t offset) {
     std::memcpy(&dest[offset], &value, sizeof(uint32_t));
     return sizeof(uint32_t);
+}
+
+size_t setUint64(uint64_t value, std::string dest, size_t offset) {
+    std::memcpy(&dest[offset], &value, sizeof(uint64_t));
+    return sizeof(uint64_t);
 }
 
 size_t setFloat32(float value, std::string dest, size_t offset) {
