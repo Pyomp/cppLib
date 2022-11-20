@@ -5,6 +5,7 @@
 
 /* GETTERS */
 uint8_t stringBufferUtils::getUint8(std::string str, size_t offset) {
+    if (str.size() < sizeof(uint8_t) + offset)return 0;
     return *(uint8_t*)&str[offset];
 };
 
@@ -14,14 +15,17 @@ uint16_t stringBufferUtils::getUint16(std::string str, size_t offset) {
 }
 
 uint32_t stringBufferUtils::getUint32(std::string str, size_t offset) {
+    if (str.size() < sizeof(uint32_t) + offset)return 0;
     return *(uint32_t*)&str[offset];
 }
 
 float stringBufferUtils::getFloat32(std::string str, size_t  offset) {
+    if (str.size() < sizeof(float) + offset)return 0;
     return *(float*)&str[offset];
 }
 
 uint64_t stringBufferUtils::getUint64(std::string str, size_t offset) {
+    if (str.size() < sizeof(uint64_t) + offset)return 0;
     return *(uint64_t*)&str[offset];
 }
 
