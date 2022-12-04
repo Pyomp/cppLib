@@ -8,8 +8,11 @@
 
 #include "stringUtils.h"
 
-std::map<std::string, TerminalCallback> dispatcher;
-bool isInit = false;
+namespace {
+    std::unordered_map<std::string, TerminalCallback> dispatcher;
+    bool isInit = false;
+}
+
 void loop() {
     while (1) {
         std::cout << "$ ";
