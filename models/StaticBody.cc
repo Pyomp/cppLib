@@ -14,7 +14,7 @@ StaticBody::StaticBody(std::string url) {
     std::string warn;
 
     // bool ret = loader.LoadASCIIFromFile(&model, &err, &warn, "./terrain.glb");
-    bool ret = loader.LoadBinaryFromFile(&model, &err, &warn, "game/zones/zoneZero.glb"); // for binary glTF(.glb)
+    bool ret = loader.LoadBinaryFromFile(&model, &err, &warn, url); // for binary glTF(.glb)
 
     if (!warn.empty()) {
         printf("Warn: %s\n", warn.c_str());
