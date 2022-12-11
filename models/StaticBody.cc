@@ -1,29 +1,20 @@
-#include <iostream>
+#include "StaticBody.h"
+#include <string>
 
-// #include "SafetyThreadTest.h"
-// #include "terminal.h"
-// #include "structCast.h"
-// #include "EventSet.h"
-// #include "EventSetVoid.h"
-// #include "stringBufferUtils.h"
-
-// Define these only in *one* .cc file.
 #define TINYGLTF_IMPLEMENTATION
 #define STB_IMAGE_IMPLEMENTATION
 #define STB_IMAGE_WRITE_IMPLEMENTATION
-// #define TINYGLTF_NOEXCEPTION // optional. disable exception handling.
+
 #include "tiny_gltf.h"
-#include "Triangle.h"
-#include "Vector3.h"
-#include <cstring>
-int main() {
+
+StaticBody::StaticBody(std::string url) {
     tinygltf::Model model;
     tinygltf::TinyGLTF loader;
     std::string err;
     std::string warn;
 
     // bool ret = loader.LoadASCIIFromFile(&model, &err, &warn, "./terrain.glb");
-    bool ret = loader.LoadBinaryFromFile(&model, &err, &warn, "./terrain.glb"); // for binary glTF(.glb)
+    bool ret = loader.LoadBinaryFromFile(&model, &err, &warn, "game/zones/zoneZero.glb"); // for binary glTF(.glb)
 
     if (!warn.empty()) {
         printf("Warn: %s\n", warn.c_str());
@@ -35,7 +26,7 @@ int main() {
 
     if (!ret) {
         printf("Failed to parse glTF\n");
-        return -1;
+        return;
     }
 
     std::vector<Triangle> triangles;
@@ -63,14 +54,6 @@ int main() {
             uint16_t indices[indicesLength];
             memcpy(&indices, bufferIndices.data.data() + bufferViewIndices.byteOffset, bufferViewIndices.byteLength);
 
-            for (auto point : position)
-            {
-                std::cout << point << " | ";
-            }
-            std::cout << std::endl;
-            std::cout << normal << std::endl;
-            std::cout << indices << std::endl;
-
             for (size_t i = 0; i < indicesLength; i += 3) {
                 uint16_t aIndex = indices[i];
                 uint16_t bIndex = indices[i + 1];
@@ -81,13 +64,13 @@ int main() {
                 Vector3 cVector(position[cIndex * 3], position[cIndex * 3 + 1], position[cIndex * 3 + 2]);
 
                 Triangle triangle(aVector, bVector, cVector);
-            
-                triangles.push_back(triangle);
 
-                std::cout << triangle << std::endl;
+                this->triangles.push_back(triangle);
+                
+                Vector3 normal;
+                triangle.getNormal(normal);
+                this->normals.push_back(normal.negate());
             }
         }
     };
-
-    return 0;
-}
+};

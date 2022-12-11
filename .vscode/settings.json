@@ -60,7 +60,9 @@
         "condition_variable": "cpp",
         "ios": "cpp",
         "mutex": "cpp",
-        "queue": "cpp"
+        "queue": "cpp",
+        "optional": "cpp",
+        "iomanip": "cpp"
     }
 
 }
