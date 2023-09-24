@@ -1,5 +1,5 @@
-#include "wsUtils.h"
-#include "stringBufferUtils.h"
+#include "./wsUtils.h"
+#include "./stringBufferUtils.h"
 
 uint16_t wsUtils::getCommand(std::string message) {
     if (message.size() < 2) return 0;

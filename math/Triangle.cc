@@ -1,13 +1,11 @@
-
-#include "Triangle.h"
+#include "./Triangle.h"
 
 #include <cmath>
 
-#include "Box3.h"
+#include "./Box3.h"
 
 Triangle::Triangle(Vector3 a, Vector3 b, Vector3 c): a(a), b(b), c(c) {
 }
-
 
 void Triangle::getNormal(const Vector3& a, const Vector3& b, const Vector3& c, Vector3& target) {
 

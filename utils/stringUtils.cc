@@ -1,7 +1,7 @@
 #include <sstream>
 #include <iomanip>
 
-#include "stringUtils.h"
+#include "./stringUtils.h"
 
 std::vector<std::string> stringUtils::split(std::string s, std::string delimiter) {
     size_t pos_start = 0, pos_end, delim_len = delimiter.length();

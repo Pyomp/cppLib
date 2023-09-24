@@ -1,12 +1,9 @@
-
-#include "Vector3.h"
-
-#include "Matrix3.h"
-#include "Matrix4.h"
-#include "Quaternion.h"
-#include "Spherical.h"
-
-#include "MathUtils.h"
+#include "./Vector3.h"
+#include "./Matrix3.h"
+#include "./Matrix4.h"
+#include "./Quaternion.h"
+#include "./Spherical.h"
+#include "./MathUtils.h"
 
 #include <algorithm>
 #include <cmath>

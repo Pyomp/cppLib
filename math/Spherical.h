@@ -1,7 +1,6 @@
 #pragma once
-#include "Vector3.h"
-
-#include "MathUtils.h"
+#include "./Vector3.h"
+#include "./MathUtils.h"
 
 class Spherical {
 

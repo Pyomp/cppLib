@@ -1,37 +1,35 @@
 #pragma once
-#include "Vector3.h"
+#include "./Vector3.h"
 
+class Line3 {
 
+public:
+    explicit Line3(Vector3 start = Vector3(), Vector3 end = Vector3());
 
-    class Line3 {
+    const Vector3& getStart() const;
+    const Vector3& getEnd() const;
 
-    public:
-        explicit Line3(Vector3 start = Vector3(), Vector3 end = Vector3());
+    Line3 set(const Vector3& start, const Vector3& end);
 
-        const Vector3 &getStart() const;
-        const Vector3 &getEnd() const;
+    Line3& copy(const Line3& line);
 
-        Line3 set(const Vector3 &start, const Vector3 &end);
+    void getCenter(Vector3& target) const;
 
-        Line3 &copy(const Line3 &line);
+    void delta(Vector3& target) const;
 
-        void getCenter(Vector3 &target) const;
+    [[nodiscard]] float distanceSq() const;
 
-        void delta(Vector3 &target) const;
+    [[nodiscard]] float distance() const;
 
-        [[nodiscard]] float distanceSq() const;
+    void at(float t, Vector3& target) const;
 
-        [[nodiscard]] float distance() const;
+    float closestPointToPointParameter(const Vector3& point, bool clampToLine);
 
-        void at(float t, Vector3 &target) const;
+    void closestPointToPoint(const Vector3& point, bool clampToLine, Vector3& target);
 
-        float closestPointToPointParameter(const Vector3 &point, bool clampToLine);
+    Line3& applyMatrix4(const Matrix4& matrix);
 
-        void closestPointToPoint(const Vector3 &point, bool clampToLine, Vector3 &target);
-
-        Line3 &applyMatrix4(const Matrix4 &matrix);
-
-    private:
-        Vector3 start_;
-        Vector3 end_;
-    };
+private:
+    Vector3 start_;
+    Vector3 end_;
+};

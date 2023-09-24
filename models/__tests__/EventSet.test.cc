@@ -1,4 +1,5 @@
-#include "EventSet.h"
+#include <iostream>
+#include "../EventSet.h"
 
 void eventSetTest() {
     // SafetyThreadTest::runTest();
@@ -17,5 +18,4 @@ void eventSetTest() {
     e.emit(a);
     // e.remove(p);
     e.emit(a);
-    return 0;
 }

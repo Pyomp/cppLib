@@ -1,11 +1,10 @@
 #pragma once
 
-#include "Plane.h"
-#include "Sphere.h"
-#include "Triangle.h"
-#include "Vector3.h"
-
-#include "infinity.h"
+#include "./Plane.h"
+#include "./Sphere.h"
+#include "./Triangle.h"
+#include "./Vector3.h"
+#include "./infinity.h"
 
 class Box3 {
 

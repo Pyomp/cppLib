@@ -1,5 +1,5 @@
 
-#include "Spherical.h"
+#include "./Spherical.h"
 
 #include <algorithm>
 #include <cmath>

@@ -1,7 +1,7 @@
 
-#include "Box2.h"
+#include "./Box2.h"
 
-#include "infinity.h"
+#include "./infinity.h"
 
 Box2::Box2()
     : min_(+Infinity<float>, +Infinity<float>),

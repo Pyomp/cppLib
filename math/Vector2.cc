@@ -1,8 +1,6 @@
-
-#include "Vector2.h"
-
-#include "Matrix3.h"
-#include "MathUtils.h"
+#include "./Vector2.h"
+#include "./Matrix3.h"
+#include "./MathUtils.h"
 
 #include <algorithm>
 #include <iostream>

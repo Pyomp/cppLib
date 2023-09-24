@@ -1,38 +1,36 @@
 #pragma once
-#include "Vector3.h"
+#include "./Vector3.h"
 
 #include <vector>
 
+class SphericalHarmonis3 {
 
+public:
+    SphericalHarmonis3();
 
-    class SphericalHarmonis3 {
+    SphericalHarmonis3& set(const std::vector<Vector3>& coefficients);
 
-    public:
-        SphericalHarmonis3();
+    SphericalHarmonis3& zero();
 
-        SphericalHarmonis3 &set(const std::vector<Vector3> &coefficients);
+    // get the radiance in the direction of the normal
+    // target is a Vector3
+    void getAt(const Vector3& normal, Vector3& target);
 
-        SphericalHarmonis3 &zero();
+    // get the irradiance (radiance convolved with cosine lobe) in the direction of the normal
+    // target is a Vector3
+    // https://graphics.stanford.edu/papers/envmap/envmap.pdf
+    void getIrradianceAt(const Vector3& normal, Vector3& target);
 
-        // get the radiance in the direction of the normal
-        // target is a Vector3
-        void getAt(const Vector3 &normal, Vector3 &target);
+    SphericalHarmonis3& add(const SphericalHarmonis3& sh);
 
-        // get the irradiance (radiance convolved with cosine lobe) in the direction of the normal
-        // target is a Vector3
-        // https://graphics.stanford.edu/papers/envmap/envmap.pdf
-        void getIrradianceAt(const Vector3 &normal, Vector3 &target);
+    SphericalHarmonis3& addScaledSH(const SphericalHarmonis3& sh, float s);
 
-        SphericalHarmonis3 &add(const SphericalHarmonis3 &sh);
+    SphericalHarmonis3& scale(float s);
 
-        SphericalHarmonis3 &addScaledSH(const SphericalHarmonis3 &sh, float s);
+    SphericalHarmonis3& lerp(const SphericalHarmonis3& sh, float alpha);
 
-        SphericalHarmonis3 &scale(float s);
+    const std::vector<Vector3>& getCoefficients() const;
 
-        SphericalHarmonis3 &lerp(const SphericalHarmonis3 &sh, float alpha);
-
-        const std::vector<Vector3> &getCoefficients() const;
-
-    private:
-        std::vector<Vector3> coefficients_;
-    };
+private:
+    std::vector<Vector3> coefficients_;
+};

@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 
-#include "stringBufferUtils.h"
+#include "../utils/stringBufferUtils.h"
 
 class Matrix3;
 class Matrix4;

@@ -1,8 +1,8 @@
 
-#include "Frustum.h"
-#include "Box3.h"
-#include "Matrix4.h"
-#include "Sphere.h"
+#include "./Frustum.h"
+#include "./Box3.h"
+#include "./Matrix4.h"
+#include "./Sphere.h"
 
 Frustum::Frustum(Plane p0, Plane p1, Plane p2, Plane p3, Plane p4, Plane p5)
     : planes_{p0, p1, p2, p3, p4, p5} {}

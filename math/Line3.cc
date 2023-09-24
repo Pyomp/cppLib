@@ -1,7 +1,6 @@
 
-#include "Line3.h"
-
-#include "Matrix4.h"
+#include "./Line3.h"
+#include "./Matrix4.h"
 
 #include <algorithm>
 

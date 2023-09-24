@@ -6,7 +6,7 @@
 #include <functional>
 #include <thread>
 
-#include "stringUtils.h"
+#include "../utils/stringUtils.h"
 
 namespace {
     std::unordered_map<std::string, TerminalCallback> dispatcher;
@@ -41,7 +41,7 @@ void terminal::init(bool isThreaded) {
 
     dispatcher["ping"] = [](std::vector<std::string> args) {
         std::cout << "pong";
-    };
+        };
 
     if (isThreaded) {
         std::thread one(loop);

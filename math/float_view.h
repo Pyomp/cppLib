@@ -5,8 +5,6 @@
 #include <ostream>
 #include <utility>
 
-
-
 class float_view {
 
 public:

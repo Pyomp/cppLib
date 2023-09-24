@@ -1,11 +1,12 @@
-#include "StaticBody.h"
 #include <string>
+
+#include "./StaticBody.h"
 
 #define TINYGLTF_IMPLEMENTATION
 #define STB_IMAGE_IMPLEMENTATION
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 
-#include "tiny_gltf.h"
+#include "../libs/tiny_gltf.h"
 
 StaticBody::StaticBody(std::string url) {
     tinygltf::Model model;

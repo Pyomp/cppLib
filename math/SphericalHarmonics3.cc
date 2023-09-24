@@ -1,5 +1,4 @@
-
-#include "SphericalHarmonics3.h"
+#include "./SphericalHarmonics3.h"
 
 SphericalHarmonis3::SphericalHarmonis3() : coefficients_(9) {}
 

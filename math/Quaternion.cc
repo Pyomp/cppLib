@@ -1,9 +1,7 @@
-
-#include "Quaternion.h"
-
-#include "Euler.h"
-#include "Matrix4.h"
-#include "Vector3.h"
+#include "./Quaternion.h"
+#include "./Euler.h"
+#include "./Matrix4.h"
+#include "./Vector3.h"
 
 #include <algorithm>
 #include <cmath>

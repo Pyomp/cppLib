@@ -1,7 +1,7 @@
 #include <string>
 #include <cstring>
 
-#include "stringBufferUtils.h"
+#include "./stringBufferUtils.h"
 
 /* GETTERS */
 uint8_t stringBufferUtils::getUint8(std::string str, size_t offset) {

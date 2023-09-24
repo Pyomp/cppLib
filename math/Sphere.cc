@@ -1,11 +1,9 @@
-
-#include "Sphere.h"
-#include "Matrix4.h"
-#include "Box3.h"
+#include "./Sphere.h"
+#include "./Matrix4.h"
+#include "./Box3.h"
 
 #include <algorithm>
 #include <cmath>
-
 
 Sphere::Sphere(Vector3 center, float radius): center(center), radius(radius) { this->radiusSq = radius * radius; }
 

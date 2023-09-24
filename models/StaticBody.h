@@ -3,9 +3,9 @@
 #include <vector>
 #include <string>
 
-#include "Triangle.h"
-#include "Box3.h"
-#include "Vector3.h"
+#include "../math/Triangle.h"
+#include "../math/Box3.h"
+#include "../math/Vector3.h"
 
 class StaticBody {
 public:

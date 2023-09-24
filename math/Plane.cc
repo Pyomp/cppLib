@@ -1,8 +1,8 @@
 
-#include "Plane.h"
-#include "Box3.h"
-#include "Line3.h"
-#include "Sphere.h"
+#include "./Plane.h"
+#include "./Box3.h"
+#include "./Line3.h"
+#include "./Sphere.h"
 
 Plane::Plane() : normal({1, 0, 0}), constant(0.f) {}
 

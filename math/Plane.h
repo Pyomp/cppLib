@@ -1,9 +1,7 @@
 #pragma once
 
-#include "Matrix3.h"
-#include "Vector3.h"
-
-
+#include "./Matrix3.h"
+#include "./Vector3.h"
 
 class Sphere;
 class Line3;

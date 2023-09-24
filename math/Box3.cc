@@ -1,7 +1,7 @@
 
-#include "Box3.h"
+#include "./Box3.h"
 
-#include "infinity.h"
+#include "./infinity.h"
 
 Box3::Box3()
     : min(Vector3(+Infinity<float>, +Infinity<float>, +Infinity<float>)),

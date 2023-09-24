@@ -1,7 +1,5 @@
-
-#include "Ray.h"
-
-#include "Box3.h"
+#include "./Ray.h"
+#include "./Box3.h"
 
 #include <cmath>
 #include <algorithm>

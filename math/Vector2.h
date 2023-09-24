@@ -3,8 +3,6 @@
 #include <iostream>
 #include <string>
 
-
-
 class Matrix3;
 
 class Vector2 {
