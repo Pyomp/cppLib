@@ -16,6 +16,7 @@ public:
     size_t setUint16(const uint16_t value, const size_t offset);
     size_t setUint32(const uint32_t value, const size_t offset);
     size_t setUint64(const uint64_t value, const size_t offset);
+    size_t setInt64(const int64_t value, const size_t offset);
     size_t setFloat32(const float value, const size_t offset);
     size_t setString(const std::string value, const size_t offset);
 private:
