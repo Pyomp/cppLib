@@ -33,7 +33,7 @@ StaticBody::StaticBody(std::string url) {
     std::vector<Triangle> triangles;
 
     for (auto mesh : model.meshes) {
-        if (mesh.name.starts_with("leafs")) continue;
+        if (mesh.name.starts_with("leaves")) continue;
 
         for (auto primitive : mesh.primitives) {
             auto positionIndex = primitive.attributes["POSITION"];
