@@ -75,7 +75,7 @@ StaticBody::StaticBody(std::string url) {
                 this->normals.push_back(normal);
 
                 this->resistances.push_back(
-                    mesh.extras.Has("resistance") ? mesh.extras.Get("resistance").GetNumberAsDouble() : 1.01
+                    mesh.extras.Has("resistance") ? mesh.extras.Get("resistance").GetNumberAsDouble() : 10
                 );
 
                 Box3 boundingBox;
