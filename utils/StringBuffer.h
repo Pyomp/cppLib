@@ -5,7 +5,7 @@
 class StringBuffer : public std::string {
 public:
     StringBuffer(std::string buffer): std::string(buffer), _begin((void*)this->c_str()) {};
-    StringBuffer(const size_t size) : std::string(size, '\0'), _begin((void*)this->c_str()) {};
+    StringBuffer(const size_t size): std::string(size, '\0'), _begin((void*)this->c_str()) {};
 
     uint8_t getUint8(const size_t offset);
     uint16_t getUint16(const size_t offset);
