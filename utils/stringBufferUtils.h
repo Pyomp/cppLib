@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <cstdint>
 
 namespace stringBufferUtils {
     uint8_t getUint8(const std::string& str, const size_t& offset);

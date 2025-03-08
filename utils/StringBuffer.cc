@@ -1,6 +1,6 @@
 #include <cstring> // memcpy
 
-#include "StringBuffer.h"
+#include "./StringBuffer.h"
 
 uint8_t StringBuffer::getUint8(const size_t& offset) const {
     if (this->size() < sizeof(uint8_t) + offset) return 0;
