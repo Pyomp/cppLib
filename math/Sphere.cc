@@ -5,12 +5,13 @@
 #include <algorithm>
 #include <cmath>
 
-Sphere::Sphere(Vector3 center, float radius): center(center), radius(radius) { this->radiusSq = radius * radius; }
+Sphere::Sphere(Vector3 center, float radius) : center(center), radius(radius), radiusSq(radius* radius) {}
 
 Sphere& Sphere::set(const Vector3& center, float radius) {
 
     this->center = (center);
     this->radius = radius;
+    this->radiusSq = radius * radius;
 
     return *this;
 }
@@ -59,6 +60,7 @@ Sphere& Sphere::makeEmpty() {
 
     this->center.set(0, 0, 0);
     this->radius = -1;
+    this->radiusSq = 0;
 
     return *this;
 }
@@ -119,6 +121,7 @@ Sphere& Sphere::applyMatrix4(const Matrix4& matrix) {
 
     this->center.applyMatrix4(matrix);
     this->radius = this->radius * matrix.getMaxScaleOnAxis();
+    this->radiusSq = this->radius * this->radius;
 
     return *this;
 }
