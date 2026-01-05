@@ -5,12 +5,12 @@
 
 namespace mathUtils {
 
-    const float LN2 = log(2.f);
-    const float PI = 2.f * acos(0.f);
-    const float PI05 = PI / 2;
+    constexpr float LN2 = log(2.f);
+    constexpr float PI = 2.f * acos(0.f);
+    constexpr float PI05 = PI / 2;
 
-    const float DEG2RAD = PI / 180.f;
-    const float RAD2DEG = 180.f / PI;
+    constexpr float DEG2RAD = PI / 180.f;
+    constexpr float RAD2DEG = 180.f / PI;
 
     template<class T>
     T clamp(T value, T min, T max) {

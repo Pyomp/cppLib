@@ -17,7 +17,7 @@ uint32_t StringBuffer::getUint32(const size_t& offset)const {
     return *(uint32_t*)(this->_begin + offset);
 }
 
-float StringBuffer::getFloat32(const size_t&  offset) const {
+float StringBuffer::getFloat32(const size_t& offset) const {
     if (this->size() < sizeof(float) + offset) return 0;
     return *(float*)(this->_begin + offset);
 }
@@ -57,7 +57,7 @@ size_t StringBuffer::setInt64(const int64_t& value, const size_t& offset) {
     return sizeof(int64_t);
 }
 
-size_t StringBuffer::setFloat32(const float &value, const size_t &offset) {
+size_t StringBuffer::setFloat32(const float& value, const size_t& offset) {
     if (this->size() < sizeof(value) + offset) return 0;
     std::memcpy(this->_begin + offset, &value, sizeof(float));
     return sizeof(float);
