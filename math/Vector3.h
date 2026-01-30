@@ -176,8 +176,8 @@ public:
     }
 
     size_t fromFrame(const std::string frame, const size_t cursor) {
-        this->x = stringBufferUtils::getFloat32(frame, cursor);        
-        this->y = stringBufferUtils::getFloat32(frame, cursor + 4);        
+        this->x = stringBufferUtils::getFloat32(frame, cursor);
+        this->y = stringBufferUtils::getFloat32(frame, cursor + 4);
         this->z = stringBufferUtils::getFloat32(frame, cursor + 8);
         return cursor + 12;
     }
