@@ -12,13 +12,32 @@ public:
     Vector3 min;
     Vector3 max;
 
-    Box3();
+    Box3()
+        : min(Vector3(+Infinity<float>, +Infinity<float>, +Infinity<float>)),
+        max(Vector3(-Infinity<float>, -Infinity<float>, -Infinity<float>)) {
+    };
 
     Box3(Vector3 min, Vector3 max);
 
+    inline Box3(float minX, float minY, float minZ, float maxX, float maxY, float maxZ) {
+        this->set(minX, minY, minZ, maxX, maxY, maxZ);
+    };
+
     Box3& set(const Vector3& min, const Vector3& max);
 
-    Box3& set(float minX, float minY, float minZ, float maxX, float maxY, float maxZ);
+
+    inline Box3& set(float minX, float minY, float minZ, float maxX, float maxY, float maxZ) {
+
+        this->min.x = minX;
+        this->min.y = minY;
+        this->min.z = minZ;
+
+        this->max.x = maxX;
+        this->max.y = maxY;
+        this->max.z = maxZ;
+
+        return *this;
+    }
 
     template<class ArrayLike>
     Box3& setFromArray(const ArrayLike& array) {
@@ -89,7 +108,14 @@ public:
 
     void getParameter(const Vector3& point, Vector3& target) const;
 
-    [[nodiscard]] bool intersectsBox(const Box3& box) const;
+    [[nodiscard]] inline bool intersectsBox(const Box3& box) const {
+        // using 6 splitting planes to rule out intersections.
+        return box.max.x < this->min.x || box.min.x > this->max.x ||
+            box.max.y < this->min.y || box.min.y > this->max.y ||
+            box.max.z < this->min.z || box.min.z > this->max.z
+            ? false
+            : true;
+    }
 
     [[nodiscard]] bool intersectsSphere(const Sphere& sphere) const;
 
@@ -112,7 +138,16 @@ public:
     Box3& translate(const Vector3& offset);
 
     friend std::ostream& operator<<(std::ostream& os, const Box3& v) {
-        os << "Box3(max=" << v.min << ", max=" << v.max << ")";
+
+        os << "{\"min\":{"
+            << "\"x\":" << v.min.x << ","
+            << "\"y\":" << v.min.y << ","
+            << "\"z\":" << v.min.z
+            << "},\"max\":{"
+            << "\"x\":" << v.max.x << ","
+            << "\"y\":" << v.max.y << ","
+            << "\"z\":" << v.max.z
+            << "} }";
         return os;
     }
 

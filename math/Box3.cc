@@ -3,13 +3,9 @@
 
 #include "./infinity.h"
 
-Box3::Box3()
-    : min(Vector3(+Infinity<float>, +Infinity<float>, +Infinity<float>)),
-      max(Vector3(-Infinity<float>, -Infinity<float>, -Infinity<float>)) {}
-
 Box3::Box3(Vector3 min, Vector3 max) : min(min), max(max) {}
 
-Box3 &Box3::set(const Vector3 &min, const Vector3 &max) {
+Box3& Box3::set(const Vector3& min, const Vector3& max) {
 
     this->min.copy(min);
     this->max.copy(max);
@@ -17,15 +13,7 @@ Box3 &Box3::set(const Vector3 &min, const Vector3 &max) {
     return *this;
 }
 
-Box3 &Box3::set(float minX, float minY, float minZ, float maxX, float maxY, float maxZ) {
-
-    this->min.set(minX, minY, minZ);
-    this->max.set(maxX, maxY, maxZ);
-
-    return *this;
-}
-
-Box3 &Box3::setFromCenterAndSize(const Vector3 &center, const Vector3 &size) {
+Box3& Box3::setFromCenterAndSize(const Vector3& center, const Vector3& size) {
 
     Vector3 _vector{};
     const auto halfSize = _vector.copy(size).multiplyScalar(0.5f);
@@ -36,7 +24,7 @@ Box3 &Box3::setFromCenterAndSize(const Vector3 &center, const Vector3 &size) {
     return *this;
 }
 
-Box3 &Box3::copy(const Box3 &box) {
+Box3& Box3::copy(const Box3& box) {
 
     this->min.copy(box.min);
     this->max.copy(box.max);
@@ -44,7 +32,7 @@ Box3 &Box3::copy(const Box3 &box) {
     return *this;
 }
 
-Box3 &Box3::makeEmpty() {
+Box3& Box3::makeEmpty() {
 
     this->min.x = this->min.y = this->min.z = +Infinity<float>;
     this->max.x = this->max.y = this->max.z = -Infinity<float>;
@@ -59,17 +47,17 @@ bool Box3::isEmpty() const {
     return (this->max.x < this->min.x) || (this->max.y < this->min.y) || (this->max.z < this->min.z);
 }
 
-void Box3::getCenter(Vector3 &target) const {
+void Box3::getCenter(Vector3& target) const {
 
     this->isEmpty() ? target.set(0, 0, 0) : target.addVectors(this->min, this->max).multiplyScalar(0.5f);
 }
 
-void Box3::getSize(Vector3 &target) const {
+void Box3::getSize(Vector3& target) const {
 
     this->isEmpty() ? target.set(0, 0, 0) : target.subVectors(this->max, this->min);
 }
 
-Box3 &Box3::expandByPoint(const Vector3 &point) {
+Box3& Box3::expandByPoint(const Vector3& point) {
 
     this->min.min(point);
     this->max.max(point);
@@ -77,7 +65,7 @@ Box3 &Box3::expandByPoint(const Vector3 &point) {
     return *this;
 }
 
-Box3 &Box3::expandByVector(const Vector3 &vector) {
+Box3& Box3::expandByVector(const Vector3& vector) {
 
     this->min.sub(vector);
     this->max.add(vector);
@@ -85,7 +73,7 @@ Box3 &Box3::expandByVector(const Vector3 &vector) {
     return *this;
 }
 
-Box3 &Box3::expandByScalar(float scalar) {
+Box3& Box3::expandByScalar(float scalar) {
 
     this->min.addScalar(-scalar);
     this->max.addScalar(scalar);
@@ -93,44 +81,34 @@ Box3 &Box3::expandByScalar(float scalar) {
     return *this;
 }
 
-bool Box3::containsPoint(const Vector3 &point) const {
+bool Box3::containsPoint(const Vector3& point) const {
 
     return point.x < this->min.x || point.x > this->max.x ||
-                           point.y < this->min.y || point.y > this->max.y ||
-                           point.z < this->min.z || point.z > this->max.z
-                   ? false
-                   : true;
+        point.y < this->min.y || point.y > this->max.y ||
+        point.z < this->min.z || point.z > this->max.z
+        ? false
+        : true;
 }
 
-bool Box3::containsBox(const Box3 &box) const {
+bool Box3::containsBox(const Box3& box) const {
 
     return this->min.x <= box.min.x && box.max.x <= this->max.x &&
-           this->min.y <= box.min.y && box.max.y <= this->max.y &&
-           this->min.z <= box.min.z && box.max.z <= this->max.z;
+        this->min.y <= box.min.y && box.max.y <= this->max.y &&
+        this->min.z <= box.min.z && box.max.z <= this->max.z;
 }
 
-void Box3::getParameter(const Vector3 &point, Vector3 &target) const {
+void Box3::getParameter(const Vector3& point, Vector3& target) const {
 
     // This can potentially have a divide by zero if the box
     // has a size dimension of 0.
 
     target.set(
-            (point.x - this->min.x) / (this->max.x - this->min.x),
-            (point.y - this->min.y) / (this->max.y - this->min.y),
-            (point.z - this->min.z) / (this->max.z - this->min.z));
+        (point.x - this->min.x) / (this->max.x - this->min.x),
+        (point.y - this->min.y) / (this->max.y - this->min.y),
+        (point.z - this->min.z) / (this->max.z - this->min.z));
 }
 
-bool Box3::intersectsBox(const Box3 &box) const {
-
-    // using 6 splitting planes to rule out intersections.
-    return box.max.x < this->min.x || box.min.x > this->max.x ||
-                           box.max.y < this->min.y || box.min.y > this->max.y ||
-                           box.max.z < this->min.z || box.min.z > this->max.z
-                   ? false
-                   : true;
-}
-
-bool Box3::intersectsSphere(const Sphere &sphere) const {
+bool Box3::intersectsSphere(const Sphere& sphere) const {
 
     Vector3 _vector{};
 
@@ -142,7 +120,7 @@ bool Box3::intersectsSphere(const Sphere &sphere) const {
     return _vector.distanceToSquared(sphere.center) <= (radius * radius);
 }
 
-bool Box3::intersectsPlane(const Plane &plane) const {
+bool Box3::intersectsPlane(const Plane& plane) const {
 
     // We compute the minimum and maximum dot product values. If those values
     // are on the same side (back or front) of the plane, then there is no intersection.
@@ -154,7 +132,8 @@ bool Box3::intersectsPlane(const Plane &plane) const {
         min = plane.normal.x * this->min.x;
         max = plane.normal.x * this->max.x;
 
-    } else {
+    }
+    else {
 
         min = plane.normal.x * this->max.x;
         max = plane.normal.x * this->min.x;
@@ -165,7 +144,8 @@ bool Box3::intersectsPlane(const Plane &plane) const {
         min += plane.normal.y * this->min.y;
         max += plane.normal.y * this->max.y;
 
-    } else {
+    }
+    else {
 
         min += plane.normal.y * this->max.y;
         max += plane.normal.y * this->min.y;
@@ -176,7 +156,8 @@ bool Box3::intersectsPlane(const Plane &plane) const {
         min += plane.normal.z * this->min.z;
         max += plane.normal.z * this->max.z;
 
-    } else {
+    }
+    else {
 
         min += plane.normal.z * this->max.z;
         max += plane.normal.z * this->min.z;
@@ -185,7 +166,7 @@ bool Box3::intersectsPlane(const Plane &plane) const {
     return (min <= -plane.constant && max >= -plane.constant);
 }
 
-bool Box3::intersectsTriangle(const Triangle &triangle) const {
+bool Box3::intersectsTriangle(const Triangle& triangle) const {
 
     if (this->isEmpty()) {
 
@@ -223,14 +204,14 @@ bool Box3::intersectsTriangle(const Triangle &triangle) const {
     std::vector<float> axes = {
             0, -_f0.z, _f0.y, 0, -_f1.z, _f1.y, 0, -_f2.z, _f2.y,
             _f0.z, 0, -_f0.x, _f1.z, 0, -_f1.x, _f2.z, 0, -_f2.x,
-            -_f0.y, _f0.x, 0, -_f1.y, _f1.x, 0, -_f2.y, _f2.x, 0};
+            -_f0.y, _f0.x, 0, -_f1.y, _f1.x, 0, -_f2.y, _f2.x, 0 };
     if (!satForAxes(axes, _v0, _v1, _v2, _extents)) {
 
         return false;
     }
 
     // test 3 face normals from the aabb
-    axes = {1, 0, 0, 0, 1, 0, 0, 0, 1};
+    axes = { 1, 0, 0, 0, 1, 0, 0, 0, 1 };
     if (!satForAxes(axes, _v0, _v1, _v2, _extents)) {
 
         return false;
@@ -241,17 +222,17 @@ bool Box3::intersectsTriangle(const Triangle &triangle) const {
     // finally testing the face normal of the triangle
     // use already existing triangle edge vectors here
     _triangleNormal.crossVectors(_f0, _f1);
-    axes = {_triangleNormal.x, _triangleNormal.y, _triangleNormal.z};
+    axes = { _triangleNormal.x, _triangleNormal.y, _triangleNormal.z };
 
     return satForAxes(axes, _v0, _v1, _v2, _extents);
 }
 
-Vector3 &Box3::clampPoint(const Vector3 &point, Vector3 &target) const {
+Vector3& Box3::clampPoint(const Vector3& point, Vector3& target) const {
 
     return target.copy(point).clamp(this->min, this->max);
 }
 
-float Box3::distanceToPoint(const Vector3 &point) const {
+float Box3::distanceToPoint(const Vector3& point) const {
 
     Vector3 _vector{};
 
@@ -260,7 +241,7 @@ float Box3::distanceToPoint(const Vector3 &point) const {
     return clampedPoint.sub(point).length();
 }
 
-void Box3::getBoundingSphere(Sphere &target) const {
+void Box3::getBoundingSphere(Sphere& target) const {
 
     this->getCenter(target.center);
 
@@ -269,7 +250,7 @@ void Box3::getBoundingSphere(Sphere &target) const {
     target.radius = _vector.length() * 0.5f;
 }
 
-Box3 &Box3::intersect(const Box3 &box) {
+Box3& Box3::intersect(const Box3& box) {
 
     this->min.max(box.min);
     this->max.min(box.max);
@@ -280,7 +261,7 @@ Box3 &Box3::intersect(const Box3 &box) {
     return *this;
 }
 
-Box3 &Box3::union_(const Box3 &box) {
+Box3& Box3::union_(const Box3& box) {
 
     this->min.min(box.min);
     this->max.max(box.max);
@@ -288,7 +269,7 @@ Box3 &Box3::union_(const Box3 &box) {
     return *this;
 }
 
-Box3 &Box3::applyMatrix4(const Matrix4 &matrix) {
+Box3& Box3::applyMatrix4(const Matrix4& matrix) {
 
     // transform of empty box is an empty box.
     if (this->isEmpty()) return *this;
@@ -310,7 +291,7 @@ Box3 &Box3::applyMatrix4(const Matrix4 &matrix) {
     return *this;
 }
 
-Box3 &Box3::translate(const Vector3 &offset) {
+Box3& Box3::translate(const Vector3& offset) {
 
     this->min.add(offset);
     this->max.add(offset);
@@ -318,7 +299,7 @@ Box3 &Box3::translate(const Vector3 &offset) {
     return *this;
 }
 
-bool Box3::satForAxes(const std::vector<float> &axes, const Vector3 &v0, const Vector3 &v1, const Vector3 &v2, const Vector3 &extents) {
+bool Box3::satForAxes(const std::vector<float>& axes, const Vector3& v0, const Vector3& v1, const Vector3& v2, const Vector3& extents) {
 
     Vector3 _testAxis{};
 

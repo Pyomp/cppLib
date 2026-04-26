@@ -4,7 +4,7 @@
 
 #include "./Box3.h"
 
-Triangle::Triangle(Vector3 a, Vector3 b, Vector3 c): a(a), b(b), c(c) {
+Triangle::Triangle(Vector3 a, Vector3 b, Vector3 c) : a(a), b(b), c(c) {
 }
 
 void Triangle::getNormal(const Vector3& a, const Vector3& b, const Vector3& c, Vector3& target) {
@@ -126,8 +126,7 @@ float Triangle::getArea() const {
     return _v0.cross(_v1).length() * 0.5f;
 }
 
-void Triangle::getMidpoint(Vector3& target) {
-
+void Triangle::getMidpoint(Vector3& target) const {
     target.addVectors(this->a, this->b).add(this->c).addScalar(1.0f / 3);
 }
 

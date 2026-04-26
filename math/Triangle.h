@@ -17,6 +17,7 @@ public:
 
     static void getNormal(const Vector3& a, const Vector3& b, const Vector3& c, Vector3& target);
 
+
     // static/instance method to calculate barycentric coordinates
     // based on: http://www.blackpawn.com/texts/pointinpoly/default.html
     static void
@@ -46,7 +47,7 @@ public:
 
     [[nodiscard]] float getArea() const;
 
-    void getMidpoint(Vector3& target);
+    void getMidpoint(Vector3& target) const;
 
     void getNormal(Vector3& target);
     void getBoundingBox(Box3& target);
